@@ -9,7 +9,7 @@ This little utility searches a piece of regular expression in all
 files of the current directory and subdirectories. The idea is to
 solve the most common case of a typical `find | grep` command.  It's
 not a replacement. It's not fully configurable. It's not what you
-want. It's what I need and it may be useful to you.
+want. It's what I need and it might be useful to you.
 
 ### Usage
 
