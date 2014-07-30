@@ -33,6 +33,11 @@ Finds all lines that contain `Copyright` word with a capital `C`.
     
 ### Notes
 
-At this moment it only compiles in VC2012. It uses some things from
-C++11 like std::regex, and other stuff from the TR2 filesystem
-library.
+As findinfiles uses some things from C++11 like std::regex, and other
+stuff from the TR2 filesystem library, it will not work with older
+compilers.
+
+I've tested the following compilers:
+
+* VC2012
+* VC2013

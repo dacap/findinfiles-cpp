@@ -1,5 +1,5 @@
 // Copyright (C) 2014 David Capello
-// 
+//
 // This file is released under the terms of the MIT license.
 // Read LICENSE.txt for more information.
 
@@ -8,10 +8,9 @@
 #include <iostream>
 #include <regex>
 #include <vector>
+#include "fs-wrapper.h"
 #include "filename-filter.h"
 #include "exclude-files.h"
-
-namespace fs = std::tr2::sys;   // VS2012
 
 class options {
 public:
