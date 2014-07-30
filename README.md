@@ -11,7 +11,7 @@ solve the most common case of a typical `find | grep` command.  It's
 not a replacement. It's not fully configurable. It's not what you
 want. It's what I need and it may be useful to you.
 
-Usage:
+### Usage
 
     findinfiles [-1iv] [-.ext] PATTERN [PATTERN2...]
 
@@ -20,14 +20,18 @@ Usage:
     -v      Verbose mode
     -.ext   Search only in files with the given extension `.ext`
 
-Example:
+### Examples
 
     findinfiles -.cpp -.h class
 
-Finds all lines with `class` word in `.cpp` and `.h` files of the
-current directory and subdirectories.
+Finds all lines that contain `class` word in `.cpp` or `.h` files of
+the current directory and subdirectories.
 
-## Notes
+    findinfiles Copyright
+
+Finds all lines that contain `Copyright` word with a capital `C`.
+    
+### Notes
 
 At this moment it only compiles in VC2012. It uses some things from
 C++11 like std::regex, and other stuff from the TR2 filesystem
