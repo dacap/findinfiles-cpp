@@ -1,14 +1,13 @@
-// Copyright (C) 2014 David Capello
+// Copyright (C) 2014-2017 David Capello
 //
 // This file is released under the terms of the MIT license.
 // Read LICENSE.txt for more information.
 
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <regex>
 #include <vector>
-#include "fs-wrapper.h"
+#include "base/fs.h"
 #include "filename-filter.h"
 #include "exclude-files.h"
 
@@ -119,16 +118,14 @@ void search_in_file(const options& opt, const std::string& fn) {
   }
 }
 
-void search_in_dir(const options& opt, const fs::path& dir) {
+void search_in_dir(const options& opt, const std::string& dir) {
   if (opt.verbose())
     std::clog << "Searching in " << dir << "/" << std::endl;
 
-  fs::directory_iterator end;
-  for (fs::directory_iterator it(dir); it != end; ++it) {
-    fs::path fn = it->path().filename();
-    fs::path full_fn = dir / fn;
+  for (const auto& fn : base::list_files(dir)) {
+    std::string full_fn = base::join_path(dir, fn);
 
-    if (fs::is_directory(full_fn)) {
+    if (base::is_directory(full_fn)) {
       if (opt.filter_dirname(fn)) {
         if (opt.recursive())
           search_in_dir(opt, full_fn);
@@ -162,8 +159,8 @@ int main(int argc, char* argv[]) {
       std::cout << "No pattern\n";
       return 1;
     }
-  
-    fs::path dir = fs::current_path<fs::path>();
+
+    std::string dir = base::get_current_path();
     search_in_dir(opt, dir);
 
     if (opt.verbose())

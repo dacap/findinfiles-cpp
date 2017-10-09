@@ -1,4 +1,4 @@
-# Copyright (C) 2014 David Capello
+# Copyright (C) 2014-2017 David Capello
 #
 # This file is released under the terms of the MIT license.
 # Read LICENSE.txt for more information.
@@ -6,18 +6,16 @@
 cmake_minimum_required(VERSION 2.8)
 project(findinfiles)
 
-# Search .cmake files inside cmake/ directory
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(LAF_WITH_TESTS OFF CACHE BOOL "Enable LAF tests")
+add_subdirectory(laf)
 
-# C++ TR2/11/14 Support
-find_package(CxxSupport)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/cxx-config.h.cmakein
-               ${CMAKE_CURRENT_BINARY_DIR}/cxx-config.h @ONLY)
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
-if(NOT CXX_HAS_FILESYSTEM)
-  message(FATAL_ERROR "findinfiles needs a compiler with <filesystem> library")
+# Extra flags for C++ compiler
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  add_definitions(-std=c++11 -stdlib=libc++)
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  add_definitions(-std=c++11)
 endif()
 
 # findinfiles exe
-add_executable(findinfiles findinfiles.cc)
+add_executable(findinfiles findinfiles.cpp)
+target_link_libraries(findinfiles laf-base)

@@ -1,6 +1,6 @@
 # findinfiles
 
-> Copyright (C) 2014 David Capello
+> Copyright (C) 2014-2017 David Capello
 >
 > This file is released under the terms of the MIT license.
 > Read [LICENSE.txt](LICENSE.txt) for more information.
@@ -30,14 +30,14 @@ the current directory and subdirectories.
     findinfiles Copyright
 
 Finds all lines that contain `Copyright` word with a capital `C`.
-    
+
 ### Notes
 
-As findinfiles uses some things from C++11 like std::regex, and other
-stuff from the TR2 filesystem library, it will not work with older
-compilers.
+findinfiles uses some things from C++11 like std::regex, it will not
+work with older compilers.
 
 I've tested the following compilers:
 
-* VC2012
-* VC2013
+* Windows + VC2012
+* Windows + VC2013
+* macOS 10.13 + Xcode 9.0
